@@ -1,0 +1,7 @@
+# Ignore node_modules and build
+node_modules/
+dist/
+
+# dotenv environment files
+.env
+.env.local

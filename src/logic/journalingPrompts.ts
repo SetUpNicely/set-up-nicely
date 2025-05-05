@@ -1,0 +1,1 @@
+// Placeholder for journalingPrompts.ts
