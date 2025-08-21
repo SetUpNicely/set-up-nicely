@@ -56,8 +56,8 @@ firebase-debug.log
 firebase/functions/lib/    # compiled output — do not version
 firebase/functions/tmp/    # temp files
 
-# If you start generating the FCM service worker at build time, uncomment this:
-# public/firebase-messaging-sw.js
+# FCM SW: generated at build from template
+public/firebase-messaging-sw.js
 
 # -------------------------
 # Env & secrets (keep only templates)
@@ -83,6 +83,10 @@ firebase-adminsdk-*.json
 *.der
 *.jks
 *.keystore
+.npmrc
+.yarnrc
+.yarnrc.yml
+.envrc
 
 # -------------------------
 # Archives & scratch
@@ -123,4 +127,4 @@ polygon-flatfile-sync/5zULp*
 # firestore.rules / indexes files
 # Dockerfiles / cloudbuild*.yaml
 # package.json / package-lock.json / tsconfig*.json / vite.config.ts / tailwind.config.ts
-
+# public/firebase-messaging-sw.template.js  (template should be committed)
