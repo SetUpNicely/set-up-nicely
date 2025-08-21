@@ -1,0 +1,10 @@
+options:
+  logging: CLOUD_LOGGING_ONLY
+steps:
+- name: gcr.io/cloud-builders/docker
+  args: ['build','-t','gcr.io/$PROJECT_ID/polygon-flatfile-sync:sync-v3','-f','Dockerfile.sync','.']
+- name: gcr.io/cloud-builders/docker
+  args: ['build','-t','gcr.io/$PROJECT_ID/polygon-flatfile-sync:agg-daily-v4','-f','Dockerfile.agg','.']
+images:
+- 'gcr.io/$PROJECT_ID/polygon-flatfile-sync:sync-v3'
+- 'gcr.io/$PROJECT_ID/polygon-flatfile-sync:agg-daily-v4'

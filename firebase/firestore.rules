@@ -1,1 +1,111 @@
-// Placeholder for firestore.rules
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // 🔐 Basic auth check
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "admin";
+    }
+
+    function isOwnerEmail() {
+      return isAuthenticated() &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.email == "your-email@example.com";
+    }
+
+    function isElevated() {
+      return isAdmin() || isOwnerEmail();
+    }
+
+    // 👤 /users/{userId}
+    match /users/{userId} {
+      allow read, write: if isAuthenticated() && request.auth.uid == userId;
+    }
+
+    match /users/{userId}/settings {
+      allow read, write: if isAuthenticated() && request.auth.uid == userId;
+    }
+
+    match /users/{userId}/journal/{entryId} {
+      allow read, write: if isAuthenticated() && request.auth.uid == userId
+        && request.resource.data.keys().hasAll(['createdAt', 'timestamp'])
+        && request.resource.data.createdAt is int
+        && request.resource.data.timestamp is int;
+    }
+
+    match /users/{userId}/customScans/{scanId} {
+      allow read, write: if isAuthenticated() && request.auth.uid == userId
+        && request.resource.data.keys().hasAny(['name', 'timeframe', 'logic']);
+    }
+
+    match /users/{userId}/scanResults/{docId} {
+      allow read, write: if isAuthenticated() && request.auth.uid == userId;
+    }
+
+    match /users/{userId}/watchlist/{symbol} {
+      allow read, write: if isAuthenticated() && request.auth.uid == userId;
+    }
+
+    match /users/{userId}/triggers/{docId} {
+      allow read, write: if isAuthenticated() && request.auth.uid == userId;
+    }
+
+    match /users/{userId}/pvsScores/{scanId} {
+      allow read, write: if isAuthenticated() && request.auth.uid == userId;
+    }
+
+    match /users/{userId}/fcmTokens/{token} {
+      allow read, write: if isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // 🔵 Global PVS + market highlights + triggers
+    match /pvs/{scanKey} {
+      allow read: if true;
+      allow write: if isElevated();
+    }
+
+    match /pvsScores/{scanId} {
+      allow read: if true;
+      allow write: if isElevated();
+    }
+
+    match /pvsScoresByTicker/{scanId}/{ticker} {
+      allow read: if true;
+      allow write: if isElevated();
+    }
+
+    match /triggers/{document=**} {
+      allow read: if true;
+      allow write: if isElevated();
+    }
+
+    match /market/trendingSectors {
+      allow read: if true;
+      allow write: if isElevated();
+    }
+
+    match /market/highlights/daily/{date} {
+      allow read: if true;
+      allow write: if isElevated();
+    }
+
+    match /market/highlights {
+      allow read: if isAuthenticated();
+      allow write: if isElevated();
+    }
+
+    match /scans/{presetScanId} {
+      allow read: if true;
+      allow write: if isElevated();
+    }
+
+    // ❌ fallback
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "lib": ["ES2020"],                   // ✅ Override to remove DOM
+    "module": "CommonJS",                // ✅ Needed to support require()
+    "types": ["node"],                   // ✅ Node types only
+    "outDir": "lib-dev"
+  },
+  "include": ["src/dev/**/*.ts"]
+}

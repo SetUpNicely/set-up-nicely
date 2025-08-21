@@ -1,7 +1,10 @@
-// src/services/firebase.ts
+// 📁 src/services/firebase.ts
+
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
+import functionsService from './functionsService';
+// ⚠️ Don't import getFunctions at top-level (breaks Vite + browser)
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -12,6 +15,16 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
-const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
-export const db = getFirestore(app);
+const firebaseApp = initializeApp(firebaseConfig);
+
+const auth = getAuth(firebaseApp);
+const firestore = getFirestore(firebaseApp);
+
+
+// ✅ Lazy-load getFunctions only if needed (client-safe)
+const getFirebaseFunctions = async () => {
+  const { getFunctions } = await import('firebase/functions');
+  return getFunctions(firebaseApp);
+};
+
+export { firebaseApp, auth, firestore, getFirebaseFunctions };

@@ -22,8 +22,24 @@
       "@context/*": ["src/context/*"],
       "@services/*": ["src/services/*"],
       "@data/*": ["src/data/*"],
-      "@styles/*": ["src/styles/*"]
+      "@styles/*": ["src/styles/*"],
+      "@engine/*": ["src/engine/*"],
+      "@shared/*": ["shared/*"],
+      "shared/*": ["shared/*"],
+      "firebase/*": ["node_modules/firebase/*"]
+
     }
   },
-  "include": ["src"]
+  "include": ["src", "firebase/functions/src/scanEngine.ts", "firebase/functions/src/pvsScoring.ts", "firebase/functions/src/scanConditions.ts", "firebase/functions/src/logic/highlightScans.ts"],
+  "exclude": [
+  "node_modules",
+  "firebase/functions/lib",      // ✅ Prevent scanning compiled backend
+  "firebase/functions/**/*.ts",  // ✅ (optional) Don't load backend source
+  "**/dist",
+    "**/.dockerignore",
+    "**/*.dockerignore",
+    "**/.gitignore",
+    "**/.env*"
+]
+
 }

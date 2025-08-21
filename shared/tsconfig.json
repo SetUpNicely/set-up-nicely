@@ -1,0 +1,27 @@
+
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "lib": ["es2020"],
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+
+    // ✅ NEW
+    "outDir": "./lib",
+    "declaration": true,
+    "declarationDir": "./lib/types",
+    "rootDir": "./",
+    "allowJs": false
+  },
+  "include": ["**/*.ts", "../firebase/functions/src/runPresetScansFromBuffer.ts", "../firebase/functions/src/helpers/CandleStore.ts", "../firebase/functions/src/services/storeTriggerStub.ts"],
+  "exclude": [
+    "node_modules",
+    "lib",
+    "**/*.js",
+    "../firebase/functions"
+  ]
+}

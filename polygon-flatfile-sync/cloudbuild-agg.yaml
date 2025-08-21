@@ -1,0 +1,5 @@
+steps:
+- name: gcr.io/cloud-builders/docker
+  args: ['build','-t','gcr.io/$PROJECT_ID/polygon-flatfile-sync:agg-daily-v11','-f','Dockerfile.agg','.']
+images:
+- 'gcr.io/$PROJECT_ID/polygon-flatfile-sync:agg-daily-v11'

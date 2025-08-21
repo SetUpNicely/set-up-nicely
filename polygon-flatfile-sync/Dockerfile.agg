@@ -1,0 +1,24 @@
+# ---------- build stage ----------
+FROM node:20-alpine AS build
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm ci
+
+COPY tsconfig*.json ./
+COPY src ./src
+
+# Compile and assert artifact exists
+RUN npx tsc && ls -R dist && test -f dist/index-agg.js
+
+# ---------- runtime stage ----------
+FROM node:20-alpine
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm ci --omit=dev
+
+COPY --from=build /app/dist ./dist
+
+ENV TZ=UTC NODE_ENV=production UV_THREADPOOL_SIZE=32
+CMD ["node", "dist/index-agg.js"]

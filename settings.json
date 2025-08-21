@@ -1,0 +1,12 @@
+{
+  "files.associations": {
+    ".dockerignore": "ignore",
+    "*.dockerignore": "ignore"
+  },
+  // optional: stop the TS server from even watching it
+  "typescript.tsserver.watchOptions": {
+    "watchFile": "useFsEvents",
+    "watchDirectory": "useFsEvents",
+    "excludeFiles": ["**/.dockerignore", "**/*.dockerignore"]
+  }
+}

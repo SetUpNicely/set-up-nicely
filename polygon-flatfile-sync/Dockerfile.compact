@@ -1,0 +1,26 @@
+# ---------- build stage ----------
+FROM node:20-slim AS builder
+WORKDIR /app
+
+# Install deps (includes devDeps for TypeScript)
+COPY package.json package-lock.json* ./
+RUN npm ci
+
+# Copy sources and tsconfig, then build
+COPY tsconfig.json ./
+COPY src ./src
+RUN npx tsc -p tsconfig.json
+
+# ---------- runtime stage ----------
+FROM node:20-slim
+WORKDIR /app
+
+# Only copy the built output + package files for lean runtime
+COPY --from=builder /app/dist ./dist
+COPY package.json package-lock.json* ./
+
+# Install prod deps only (if your runtime uses any)
+RUN npm ci --omit=dev
+
+# Default command runs the yargs runner
+CMD ["node", "dist/compact/runner.js"]

@@ -1,0 +1,14 @@
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - -f
+      - Dockerfile.compact
+      - -t
+      - gcr.io/$PROJECT_ID/sun-compactor:$BUILD_ID
+      - -t
+      - gcr.io/$PROJECT_ID/sun-compactor:latest
+      - .
+images:
+  - gcr.io/$PROJECT_ID/sun-compactor:$BUILD_ID
+  - gcr.io/$PROJECT_ID/sun-compactor:latest

@@ -1,0 +1,32 @@
+// 📁 /src/data/triggerOptions.ts
+export const triggerOptions = [
+  { key: 'emaFastCrossEmaSlow', label: 'EMA Fast Crosses EMA Slow' },
+  { key: 'emaFastAboveEmaSlow', label: 'EMA Fast Above EMA Slow' },
+  { key: 'emaFastBelowEmaSlow', label: 'EMA Fast Below EMA Slow' },
+  { key: 'vwapReclaim', label: 'VWAP Reclaim' },
+  { key: 'vwapReject', label: 'VWAP Reject' },
+  { key: 'rsiOversold', label: 'RSI Oversold (<30)' },
+  { key: 'rsiOverbought', label: 'RSI Overbought (>70)' },
+  { key: 'macdBullish', label: 'MACD Bullish Cross' },
+  { key: 'macdBearish', label: 'MACD Bearish Cross' },
+  { key: 'volumeSpike', label: 'Volume Spike' },
+  { key: 'relativeVolumeHigh', label: 'Relative Volume High' },
+  { key: 'bullishEngulfing', label: 'Bullish Engulfing Pattern' },
+  { key: 'bearishEngulfing', label: 'Bearish Engulfing Pattern' },
+  { key: 'hammerCandle', label: 'Hammer Candle' },
+  { key: 'shootingStar', label: 'Shooting Star Candle' },
+  { key: 'breakoutHigh', label: 'Breakout of Recent High' },
+  { key: 'breakdownLow', label: 'Breakdown of Recent Low' },
+  { key: 'squeezeRelease', label: 'Squeeze Release' },
+  { key: 'gapUp', label: 'Gap Up' },
+  { key: 'gapDown', label: 'Gap Down' },
+  { key: 'patternType', label: 'Pattern Type Detected' },
+  { key: 'breakout', label: 'Breakout Detected' },
+  { key: 'supportBounce', label: 'Support Bounce' },
+  { key: 'resistanceReject', label: 'Resistance Rejection' },
+  { key: 'priceSpike', label: 'Price Spike' },
+  { key: 'reversalSignal', label: 'Reversal Signal' },
+  { key: 'emaCrossover', label: 'EMA Crossover' },
+];
+
+export default triggerOptions;

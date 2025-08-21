@@ -1,0 +1,35 @@
+{
+  "name": "polygon-flatfile-sync",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@aws-crypto/sha256-js": "^5.2.0",
+    "@aws-sdk/client-s3": "^3.862.0",
+    "@aws-sdk/signature-v4": "^3.370.0",
+    "@fast-csv/parse": "^5.0.5",
+    "@google-cloud/storage": "^7.16.0",
+    "@smithy/node-http-handler": "^4.1.1",
+    "aws-sdk": "^2.1692.0",
+    "dotenv": "^17.2.1",
+    "luxon": "^3.7.1",
+    "parquetjs-lite": "^0.8.7",
+    "yargs": "^18.0.0"
+  },
+  "devDependencies": {
+    "@types/luxon": "^3.7.1",
+    "@types/node": "^20.19.11",
+    "@types/yargs": "^17.0.33",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  }
+}
