@@ -1,44 +1,126 @@
-# Node modules and build outputs
-node_modules/
-dist/
-build/
-
-# System files
+# -------------------------
+# OS & editors
+# -------------------------
 .DS_Store
 Thumbs.db
+ehthumbs.db
+Desktop.ini
+.idea/
+.vscode/
+.vs/
+*.swp
+*.swo
+*.swn
+*.orig
+*.iml
+.history/
 
-# Log files
+# -------------------------
+# Node / JS / TS
+# -------------------------
+node_modules/
+**/dist/
+**/lib/
+build/
+out/
+.cache/
+.parcel-cache/
+.nyc_output/
+coverage/
+.eslintcache
+.stylelintcache
+.turbo/
+.pnp.*
+*.tsbuildinfo
+
+# -------------------------
+# Logs
+# -------------------------
+logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+debug.log
 
-# dotenv environment files (don't commit real secrets)
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# -------------------------
+# Vite / React
+# -------------------------
+.vite/
 
-# Optional: ignore all .env files except the base .env (if you want to track template)
-.env.*
-
-# But allow base .env template (if you use it to show required vars)
-!*.env
-
-# VSCode config (optional)
-.vscode/
-
-# Firebase Functions build
-firebase/functions/lib/
+# -------------------------
+# Firebase (local/emulator & Functions build)
+# -------------------------
+.firebase/                 # local emulator state
 firebase-debug.log
+firebase/functions/lib/    # compiled output — do not version
+firebase/functions/tmp/    # temp files
 
-# Mac junk
-*.swp
-*.swo
+# If you start generating the FCM service worker at build time, uncomment this:
+# public/firebase-messaging-sw.js
 
-# local-only
+# -------------------------
+# Env & secrets (keep only templates)
+# -------------------------
 .env
+.env.*
+!.env.example
+!.env.template
+*.env.local
+*.local
+*.secret
+*.secrets
+*secret*.json
+*credentials*.json
+service-account*.json
+firebase-adminsdk-*.json
+*.p12
+*.pfx
+*.pem
+*.key
+*.cer
+*.crt
+*.der
+*.jks
+*.keystore
+
+# -------------------------
+# Archives & scratch
+# -------------------------
 *.zip
-**/dist/
-**/lib/
-firebase/functions/tmp/
+*.7z
+*.rar
+*.tar
+*.gz
+*.tgz
+*.bak
+*.patch
+WIP-backup.patch
+tmp/
+temp/
+.tmp/
+
+# -------------------------
+# Project-specific (polygon-flatfile-sync)
+# -------------------------
+polygon-flatfile-sync/dist/
+polygon-flatfile-sync/agg-env.yaml
+polygon-flatfile-sync/allowed_tickers.txt
+polygon-flatfile-sync/polygon-job-trigger/
+
+# Any stray tokens/creds that might show up there
+polygon-flatfile-sync/*-token*
+polygon-flatfile-sync/*-secret*
+polygon-flatfile-sync/*-creds*
+polygon-flatfile-sync/1fcbf48f-*
+polygon-flatfile-sync/5zULp*
+
+# -------------------------
+# Keep these tracked (DO NOT ignore)
+# -------------------------
+# .firebaserc
+# firebase.json
+# firestore.rules / indexes files
+# Dockerfiles / cloudbuild*.yaml
+# package.json / package-lock.json / tsconfig*.json / vite.config.ts / tailwind.config.ts
 

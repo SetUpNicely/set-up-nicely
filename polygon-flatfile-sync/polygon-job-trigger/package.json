@@ -1,8 +1,0 @@
-{
-  "name": "polygon-job-trigger",
-  "version": "1.0.0",
-  "main": "index.js",
-  "dependencies": {
-    "googleapis": "^114.0.0"
-  }
-}
